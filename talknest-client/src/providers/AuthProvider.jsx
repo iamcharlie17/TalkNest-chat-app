@@ -53,8 +53,6 @@ const AuthProvider = ({ children }) => {
     };
   }, [user?.email]);
 
-  console.log(user);
-
   const authInfo = {
     user,
     createUser,
