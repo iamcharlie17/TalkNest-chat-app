@@ -4,18 +4,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import toast from "react-hot-toast";
+import Loading from "../../../components/loading/Loading";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [toggle, setToggle] = useState(true);
-  const {loading, setLoading, loginUser, googleLogin, user} = useContext(AuthContext);
+  const {loading, setLoading, loginUser, googleLogin} = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
     loginUser(email, password)
-      .then(() => {
+      .then((res) => {
+        console.log(res.user);
         toast.success("Login Success");
         navigate("/chat");
         setLoading(false);
@@ -44,6 +46,8 @@ const Login = () => {
     setToggle(!toggle);
   };
 
+  if(loading) return <Loading/>
+
   return (
     <div className="min-h-screen bg-green-400 ">
       <div className="flex flex-col lg:flex-row">
@@ -53,7 +57,7 @@ const Login = () => {
               <FaRocketchat />
             </div>
             <Link to={"/"}>
-              <h1>TalkNest {user?.displayName}</h1>
+              <h1>TalkNest</h1>
             </Link>
           </div>
           <div>

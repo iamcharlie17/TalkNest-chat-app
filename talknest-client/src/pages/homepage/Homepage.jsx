@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import img from "../../assets/images/auth-login.png";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import Loading from "../../components/loading/Loading";
 
 const Homepage = () => {
+  const {loading} = useContext(AuthContext);
+  if(loading) return <Loading/>
   return (
     <div className="bg-gradient-to-r from-black to-gray-700 min-h-screen flex justify-center items-center">
       <div className="flex justify-around ">

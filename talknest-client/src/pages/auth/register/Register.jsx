@@ -4,6 +4,7 @@ import authImage from "../../../assets/images/auth_image.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import toast from "react-hot-toast";
+import Loading from "../../../components/loading/Loading";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -54,6 +55,8 @@ const Register = () => {
   const handleToggle = () => {
     setToggle(!toggle);
   };
+
+  if(loading) return <Loading/>
   return (
     <div className="min-h-screen bg-green-400 ">
       <div className="flex flex-col lg:flex-row">
